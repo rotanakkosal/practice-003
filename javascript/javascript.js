@@ -3,13 +3,13 @@ const sampleTasks = [
   {
     id: 1699000000000,
     taskName: "Complete JavaScript Project",
-    dueDate: "2023/12/01",
+    dueDate: "10/30/2024",
     priority: "High",
   },
   {
     id: 1699000000001,
     taskName: "Review Team Documentation",
-    dueDate: "2023/12/03",
+    dueDate: "12/05/2024",
     priority: "Medium",
   },
   // {
@@ -112,18 +112,13 @@ const addTask = () => {
     return;
   }
 
-  // date format
-  const selectedDate = new Date(dueDate.value).toLocaleString("en-US", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+  // Get current date and selected date
+  const currentDate = new Date();
+  const selectedDate = new Date(dueDate.value);
 
-  const currentDate = new Date().toLocaleString("en-US", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+  // Remove time portion for accurate date comparison
+  currentDate.setHours(0, 0, 0, 0);
+  selectedDate.setHours(0, 0, 0, 0);
 
   // Validate date
   if (selectedDate < currentDate) {
@@ -134,7 +129,11 @@ const addTask = () => {
   const newTask = {
     id: Date.now(),
     taskName: taskName.value,
-    dueDate: selectedDate,
+    dueDate: selectedDate.toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }),
     priority: priorityValue,
   };
 
