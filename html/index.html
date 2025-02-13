@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .status-btn {
+        transition: all 0.3s ease;
+        min-width: 100px;
+      }
+      .status-btn.completed {
+        min-width: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="flex justify-between gap-x-28 mx-28">
+      <!-- HTML Form -->
+      <form class="w-full max-w-sm mx-auto mt-10">
+        <!-- Form Title -->
+        <h1 class="text-2xl font-bold mb-5">Add Task</h1>
+        <!-- Task name -->
+        <section class="mb-2">
+          <label
+            for="name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Task Name
+          </label>
+          <input
+            type="text"
+            id="taskName"
+            class="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-xs-light"
+            placeholder="HRD Homework"
+            required
+          />
+        </section>
+        <!-- Error Message -->
+        <span
+          id="taskNameError"
+          class="text-red-500 text-sm flex items-center gap-1 mt-2"
+        ></span>
+
+        <!-- Due Date -->
+        <section>
+          <label
+            for="date"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Choose Date</label
+          >
+          <!-- Choose date -->
+          <div class="relative max-w-sm">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                />
+              </svg>
+            </div>
+            <input
+              id="dueDate"
+              datepicker
+              datepicker-autohide
+              type="text"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Select date"
+            />
+          </div>
+        </section>
+        <!-- Error Message -->
+        <span
+          id="dueDateError"
+          class="text-red-500 text-sm flex items-center gap-1 mt-2"
+        ></span>
+
+        <!-- Select Priority -->
+        <section class="mt-2">
+          <!-- Label -->
+          <label
+            for="priority"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Priority</label
+          >
+          <!-- Dropdown -->
+          <div class="relative">
+            <!-- Button Selected -->
+            <button
+              name="priority"
+              id="states-button"
+              data-dropdown-toggle="dropdown-states"
+              class="flex justify-between items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-400 w-full p-2.5"
+              type="button"
+            >
+              <span
+                id="selected-priority"
+                value="priority"
+                class="text-gray-400"
+                >Select Priority</span
+              >
+              <!-- Icons Dropdown -->
+              <svg
+                class="w-2.5 h-2.5 ms-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div
+              id="dropdown-states"
+              class="hidden z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:bg-gray-700"
+            >
+              <ul
+                class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="states-button"
+              >
+                <li
+                  onclick="selectPriority('High')"
+                  class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                >
+                  <div class="inline-flex items-center">Hight</div>
+                </li>
+                <li
+                  onclick="selectPriority('Medium')"
+                  class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                >
+                  <div class="inline-flex items-center">Medium</div>
+                </li>
+                <li
+                  onclick="selectPriority('Low')"
+                  class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                >
+                  <div class="inline-flex items-center">Low</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <!-- Error Message -->
+        <span
+          id="priorityError"
+          class="text-red-500 text-sm flex items-center gap-1 mt-2"
+        ></span>
+
+        <!-- Button Add Task -->
+        <button
+          onclick="addTask()"
+          type="button"
+          class="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Add New Task
+        </button>
+      </form>
+
+      <!-- Section table -->
+      <section id="taskLists" class="grow-1 mt-10 w-full">
+        <div class="max-w-6xl overflow-x-auto re">
+          <h1 class="text-2xl pl-2 my-2 font-bold mb-5">Task List</h1>
+          <!-- HTML Table -->
+          <table
+            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+          >
+            <thead
+              class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+            >
+              <tr>
+                <th scope="col" class="px-6 py-3">Task name</th>
+                <th scope="col" class="px-6 py-3">Due Date</th>
+                <th scope="col" class="px-6 py-3">Priority</th>
+                <th scope="col" class="px-6 py-3">Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+      <!-- </div> -->
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="../javascript/javascript.js"></script>
+  </body>
+</html>
