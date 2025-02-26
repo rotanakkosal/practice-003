@@ -1,66 +1,76 @@
 // Sample tasks data
 const sampleTasks = [
-  {
-    id: 1699000000000,
-    taskName: "Complete JavaScript Project",
-    dueDate: "10/30/2024",
-    priority: "High",
-  },
-  {
-    id: 1699000000001,
-    taskName: "Review Team Documentation",
-    dueDate: "12/05/2024",
-    priority: "Medium",
-  },
-  // {
-  //   id: 1699000000002,
-  //   taskName: "Update Website Content",
-  //   dueDate: "2023-12-05",
-  //   priority: "Low",
-  // },
-  // {
-  //   id: 1699000000003,
-  //   taskName: "Prepare Monthly Report",
-  //   dueDate: "2023-12-07",
-  //   priority: "High",
-  // },
-  // {
-  //   id: 1699000000004,
-  //   taskName: "Team Meeting Notes",
-  //   dueDate: "2023-12-08",
-  //   priority: "Medium",
-  // },
-  // {
-  //   id: 1699000000005,
-  //   taskName: "Debug Application",
-  //   dueDate: "2023-12-10",
-  //   priority: "High",
-  // },
-  // {
-  //   id: 1699000000006,
-  //   taskName: "Update User Manual",
-  //   dueDate: "2023-12-12",
-  //   priority: "Low",
-  // },
-  // {
-  //   id: 1699000000007,
-  //   taskName: "Backup Database",
-  //   dueDate: "2023-12-15",
-  //   priority: "Medium",
-  // },
-  // {
-  //   id: 1699000000008,
-  //   taskName: "Code Review Session",
-  //   dueDate: "2023-12-18",
-  //   priority: "High",
-  // },
-  // {
-  //   id: 1699000000009,
-  //   taskName: "Update Dependencies",
-  //   dueDate: "2023-12-20",
-  //   priority: "Low",
-  // },
-];
+    {
+      id: 1699000000000,
+      taskName: "Complete JavaScript Project",
+      dueDate: "10/30/2024",
+      priority: "High",
+      status: "pending"
+    },
+    {
+      id: 1699000000001,
+      taskName: "Review Team Documentation",
+      dueDate: "12/05/2024",
+      priority: "Medium",
+      status: "completed"
+    },
+    {
+      id: 1699000000002,
+      taskName: "Update Website Content",
+      dueDate: "12/05/2024",
+      priority: "Low",
+      status: "pending"
+    },
+    // {
+    //   id: 1699000000003,
+    //   taskName: "Prepare Monthly Report",
+    //   dueDate: "2023-12-07",
+    //   priority: "low",
+    //   status: "pending"
+    // },
+    // {
+    //   id: 1699000000004,
+    //   taskName: "Team Meeting Notes",
+    //   dueDate: "2023-12-08",
+    //   priority: "medium",
+    //   status: "pending"
+    // },
+    // {
+    //   id: 1699000000005,
+    //   taskName: "Debug Application",
+    //   dueDate: "2023-12-10",
+    //   priority: "medium",
+    //   status: "pending"
+    // },
+    // {
+    //   id: 1699000000006,
+    //   taskName: "Update User Manual",
+    //   dueDate: "2023-12-12",
+    //   priority: "High",
+    //   status: "pending"
+    // },
+    // {
+    //   id: 1699000000007,
+    //   taskName: "Backup Database",
+    //   dueDate: "2023-12-15",
+    //   priority: "high",
+    //   status: "pending"
+    // },
+    // {
+    //   id: 1699000000008,
+    //   taskName: "Code Review Session",
+    //   dueDate: "2023-12-18",
+    //   priority: "low",
+    //   status: "pending"
+    // },
+    // {
+    //   id: 1699000000009,
+    //   taskName: "Update Dependencies",
+    //   dueDate: "12/20/2024",
+    //   priority: "Low",
+    //   status: "pending"
+    // }
+  ];
 const taskName = document.getElementById("taskName");
 const dueDate = document.getElementById("dueDate");
 const taskList = document.getElementById("taskLists");
